@@ -3,8 +3,11 @@ import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 interface TransactionData {
+    id?: String;
     text: String;
     amount: Number;
+    userId?: String;
+    createdAt?: Date;
 }
 
 interface TransactionResult {
@@ -27,7 +30,7 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
     // console.log(userId);
 
     try {
-        const transactionData: TransactionData = db.transaction.create({
+        const transactionData: TransactionData = await db.transaction.create({
             data: {
                 text,
                 amount,
