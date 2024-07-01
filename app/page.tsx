@@ -13,8 +13,8 @@ const HomePage = async () => {
             <h2> Welcome, {user.firstName}</h2>
             <Balance />
             <InComeExpense />
-            <TransactionList />
             <AddTransaction />
+            <TransactionList />
         </main>
     );
 };
